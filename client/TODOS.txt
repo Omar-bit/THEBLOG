@@ -1,0 +1,2 @@
+1)complete the login function
+2)complete the home page design and logic
