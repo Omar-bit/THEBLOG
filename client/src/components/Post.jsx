@@ -1,15 +1,15 @@
-import React from 'react'
-import { AiFillDelete } from 'react-icons/ai'
-import axios from 'axios'
+import React from 'react';
+import { AiFillDelete } from 'react-icons/ai';
+import axios from 'axios';
 function Post(props) {
   async function handleDelete() {
     let res = axios.delete(
-      'http://localhost:5000/api/posts/delete/' + props.idp,
+      import.meta.env.VITE_BACK_URI + '/api/posts/delete/' + props.idp,
       { headers: { token: localStorage.getItem('token') } }
-    )
-    alert(await res.data.data)
+    );
+    alert(await res.data.data);
   }
-  const [readMore, setReadMore] = React.useState(false)
+  const [readMore, setReadMore] = React.useState(false);
   return (
     <div className=' border border-white border-6 '>
       <header className='p-2 flex items-center justify-between'>
@@ -43,7 +43,7 @@ function Post(props) {
         </p>
       </div>
     </div>
-  )
+  );
 }
 
-export default Post
+export default Post;

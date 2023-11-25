@@ -1,19 +1,19 @@
-import React from 'react'
-import axios from 'axios'
+import React from 'react';
+import axios from 'axios';
 function CreatePost() {
-  const [img, setImg] = React.useState('')
-  const [title, setTitle] = React.useState('')
-  const [descripton, setDescripton] = React.useState('')
+  const [img, setImg] = React.useState('');
+  const [title, setTitle] = React.useState('');
+  const [descripton, setDescripton] = React.useState('');
   async function handleCreate() {
-    event.preventDefault()
-    let res = axios.post('http://localhost:5000/api/posts/create', {
+    event.preventDefault();
+    let res = axios.post(import.meta.env.VITE_BACK_URI + '/api/posts/create', {
       token: localStorage.getItem('token'),
       img,
       title,
       desc: descripton,
-    })
-    alert('post created')
-    window.location.reload()
+    });
+    alert('post created');
+    window.location.reload();
   }
   return (
     <form className='flex flex-col items-center gap-5 p-4 w-[90%] mx-auto mt-5 bg-[#D9D9D9] rounded-sm lg:w-[50%] lg:mx-0'>
@@ -49,7 +49,7 @@ function CreatePost() {
         Create
       </button>
     </form>
-  )
+  );
 }
 
-export default CreatePost
+export default CreatePost;

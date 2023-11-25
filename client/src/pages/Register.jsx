@@ -1,28 +1,31 @@
-import React from 'react'
-import BasicHeader from '../components/BasicHeader'
-import axios from 'axios'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import BasicHeader from '../components/BasicHeader';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 function Register() {
-  const [name, setName] = React.useState('')
-  const [email, setEmail] = React.useState('')
-  const [password, setPassword] = React.useState('')
+  const [name, setName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   async function handleRegister() {
-    event.preventDefault()
-    let validCred = true
+    event.preventDefault();
+    let validCred = true;
     if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
-      validCred = false
-      alert('email invalid')
+      validCred = false;
+      alert('email invalid');
     }
     if (validCred) {
       try {
-        let res = await axios.post('http://localhost:5000/api/register', {
-          email,
-          name,
-          password,
-        })
-        alert(res.data.data)
+        let res = await axios.post(
+          import.meta.env.VITE_BACK_URI + '/api/register',
+          {
+            email,
+            name,
+            password,
+          }
+        );
+        alert(res.data.data);
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
     }
   }
@@ -71,7 +74,7 @@ function Register() {
         </p>
       </form>
     </>
-  )
+  );
 }
 
-export default Register
+export default Register;

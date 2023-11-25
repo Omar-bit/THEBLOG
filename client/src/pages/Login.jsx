@@ -1,25 +1,25 @@
-import React from 'react'
-import BasicHeader from '../components/BasicHeader'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import React from 'react';
+import BasicHeader from '../components/BasicHeader';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 function Login() {
-  const [error, setError] = React.useState(false)
-  const [email, setEmail] = React.useState('')
-  const [password, setPassword] = React.useState('')
+  const [error, setError] = React.useState(false);
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   async function handleLogin() {
-    event.preventDefault()
-    let res = await axios.post('http://localhost:5000/api/login', {
+    event.preventDefault();
+    let res = await axios.post(import.meta.env.VITE_BACK_URI + '/api/login', {
       email,
       password,
-    })
+    });
     if (res.data.status === 'credentials uncorrect') {
-      setError(true)
+      setError(true);
     }
     if (res.data.token) {
-      localStorage.setItem('token', res.data.token)
-      localStorage.setItem('email', res.data.data.email)
-      localStorage.setItem('name', res.data.data.name)
-      window.location = '/blog'
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('email', res.data.data.email);
+      localStorage.setItem('name', res.data.data.name);
+      window.location = '/blog';
     }
   }
   return (
@@ -60,7 +60,7 @@ function Login() {
         )}
       </form>
     </>
-  )
+  );
 }
 
-export default Login
+export default Login;

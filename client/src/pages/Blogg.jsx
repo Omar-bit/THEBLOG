@@ -1,29 +1,33 @@
-import React from 'react'
-import axios from 'axios'
-import NavBar from '../components/NavBar'
-import CreatePost from '../components/CreatePost'
-import Post from '../components/Post'
+import React from 'react';
+import axios from 'axios';
+import NavBar from '../components/NavBar';
+import CreatePost from '../components/CreatePost';
+import Post from '../components/Post';
+
 function Blog() {
-  const [loading, setLoading] = React.useState(true)
-  const [data, setData] = React.useState([])
+  const [loading, setLoading] = React.useState(true);
+  const [data, setData] = React.useState([]);
   React.useEffect(() => {
     async function verifyAuth() {
-      const token = localStorage.getItem('token')
+      const token = localStorage.getItem('token');
 
       if (token) {
-        let res = await axios.get('http://localhost:5000/api/posts', {
-          headers: { token },
-        })
-        setLoading(false)
-        setData(res.data.data)
+        let res = await axios.get(
+          import.meta.env.VITE_BACK_URI + '/api/posts',
+          {
+            headers: { token },
+          }
+        );
+        setLoading(false);
+        setData(res.data.data);
       } else {
-        window.location = '/login'
+        window.location = '/login';
       }
     }
-    verifyAuth()
-  }, [])
+    verifyAuth();
+  }, []);
   if (loading) {
-    return <div className='loader'></div>
+    return <div className='loader'></div>;
   }
   return (
     <>
@@ -37,7 +41,7 @@ function Blog() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Blog
+export default Blog;
